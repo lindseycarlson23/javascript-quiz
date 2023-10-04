@@ -1,9 +1,9 @@
 
 var quizData = [
     {
-        question: "What is my fave color?",
-        options: [1, 2, 3, 4], //options - put each option on a button
-        answer: 0 //index
+        question: "Which is the correct way to write a comment in JavaScript?",
+        options: ["??...", "//...", "{#...#}", "!---....---!"], //options - put each option on a button
+        answer: 1 //index
     },
     {
         question: "What is my fave number?",
@@ -23,7 +23,7 @@ var quizData = [
     {
         question: "What is my fave book?",
         options: [1, 2, 3, 4], //options - put each option on a button
-        answer: 4 //index
+        answer: 3 //index
     }
 ];
 
@@ -43,8 +43,23 @@ function endGame() {
     userInitials.setAttribute("type", "text");
     document.querySelector("#question-container").innerHTML="";
     document.querySelector("#question-container").appendChild(userInitials);
+    var saveInitials = document.createElement("button");
+    saveInitials.textContent = "Save Initials";
+    document.querySelector("#question-container").appendChild(saveInitials);
+    saveInitials.addEventListener('click', function(){
+        let initialsAndScore = {
+            initials: userInitials.value,
+            score: score
+        }
+        localStorage.setItem("Initials", JSON.stringify(initialsAndScore)) ;
+        document.querySelector("#question-container").innerHTML="";
+        let initials = JSON.parse(localStorage.getItem("Initials"));
+        document.querySelector("#question-container").textContent="Initials: " + initials.initials + " score: " + initials.score;
+    });
+
+
     //show high scores
-}
+};
 
 
 
@@ -67,9 +82,9 @@ function loadQuestion() {
                 if (currentQuestion < quizData.length) {
                         loadQuestion();
                 } else { 
+                        questionElement.textContent = "This is a test"; //end the quiz SHOW HIGH SCORES
+                        optionsElement.innerHTML = '';
                         endGame();
-                        // questionElement.textContent = "Quiz completed"; //end the quiz SHOW HIGH SCORES
-                        // optionsElement.innerHTML = '';
                 }; 
             // correct answer, move to the next question
             } else {
@@ -79,8 +94,9 @@ function loadQuestion() {
                 if (currentQuestion < quizData.length) {
                         loadQuestion();
                 } else { 
-                        questionElement.textContent = "Quiz completed"; //end the quiz
+                        questionElement.textContent = "This is a test"; //end the quiz
                         optionsElement.innerHTML = '';
+                        endGame();
                 }; 
             };
         });
@@ -88,7 +104,7 @@ function loadQuestion() {
     });
 };
 
-// loadQuestion();
+
     
 function startQuiz() {
     console.log("I am here!")
@@ -104,16 +120,16 @@ function startQuiz() {
 
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
-
+            endGame();
             // showScores();
         };
     }, 1000);
     loadQuestion();
 };
 
-function wrongAnswer() {
-    secondsLeft -=10;
-}
+// function wrongAnswer() {
+//     secondsLeft -=10;
+// }
 
 
 document
