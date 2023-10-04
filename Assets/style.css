@@ -36,8 +36,14 @@
 .question-container {
     color: orange;
     font-size: 20px;
+    text-align: center;
+
 }
 
 .options {
     color: green;
+}
+
+.hidden {
+    display: none !important;
 }

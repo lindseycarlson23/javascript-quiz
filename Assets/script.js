@@ -47,10 +47,11 @@ function loadQuestion() {
         var button = document.createElement('button');
         button.textContent = option;
         button.addEventListener('click', () => {
-            console.log()
             if (index !== currentQuizData.answer) { //if the answer is incorrect
                 //subtract 15 seconds  
-                currentQuestion++; //and add one point
+                currentQuestion++; 
+                
+                //and add one point
                 if (currentQuestion < quizData.length) {
                         loadQuestion();
                 } else { 
@@ -73,11 +74,11 @@ function loadQuestion() {
     });
 }
 
-loadQuestion();
+// loadQuestion();
     
 function startQuiz() {
-    document.getElementById("startButton").hidden = true;
-    document.getElementsByClassName("question").hidden = false;
+    document.getElementById("startButton").classList.add("hidden");
+    document.getElementById("question-container").classList.remove("hidden");
     loadQuestion();
 };
 
@@ -85,28 +86,5 @@ document
     .getElementById("startButton")
     .addEventListener("click", startQuiz);
 
-    // jumpNext();
 
-
-// function renderQuestion() {
-//     console.log("We are going to render a question at position: ", index);
-//     var currentQuestion = quizData[index];
-//     console.log("currentQuestion: ", currentQuestion);
-
-//     //render the title
-//     var titleObject = document.getElementById("title");
-//     titleObject.innerHTML = currentQuestion.title;
-
-//     // //render the options
-//     // document.getElementById("option_0").innerHTML = currentQuestion.options[0];
-//     // document.getElementById("option_1").innerHTML = currentQuestion.options[1];
-//     // document.getElementById("option_2").innerHTML = currentQuestion.options[2];
-//     // document.getElementById("option_3").innerHTML = currentQuestion.options[3];
-//     // document.getElementById("option_4").innerHTML = currentQuestion.options[4];
-
-// }
-
-// function jumpNext() {
-//     index = index++
-// //     startLoop();
-// }
+  
