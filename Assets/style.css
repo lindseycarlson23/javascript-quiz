@@ -31,16 +31,21 @@
 
 #time {
     color: black;
+    text-align: center;
 }
 
 .question {
     color: blue;
 }
 
-.question-container {
+#question-container {
     color: orange;
     font-size: 20px;
     text-align: center;
+
+#initials {
+    
+}
 
 }
 
