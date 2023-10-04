@@ -39,6 +39,8 @@ var optionsElement = document.querySelector('.options');
 function loadQuestion() {
     // console.log("The loop is started: ", index);
     // console.log("Current state of index after start: ", index);
+    // setTime();
+    
     var currentQuizData = quizData[currentQuestion];
     questionElement.textContent = currentQuizData.question;
     optionsElement.innerHTML = '';
@@ -77,8 +79,20 @@ function loadQuestion() {
 // loadQuestion();
     
 function startQuiz() {
+    var secondsLeft = 30;
+    secondsLeft = document.getElementById("time").innerHTML;
     document.getElementById("startButton").classList.add("hidden");
     document.getElementById("question-container").classList.remove("hidden");
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        // timeElem.textContent = secondsLeft + " seconds left";
+        secondsLeft = document.getElementById("time").innerHTML;
+
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            // showScores();
+        }
+    }, 1000);
     loadQuestion();
 };
 
@@ -87,4 +101,23 @@ document
     .addEventListener("click", startQuiz);
 
 
-  
+// Timer!!!
+// var secondsLeft = 30;
+// secondsLeft = document.getElementById("time").innerHTML;
+
+// function setTime() {
+//     var timerInterval = setInterval(function() {
+//         secondsLeft--;
+//         // timeElem.textContent = secondsLeft + " seconds left";
+//         secondsLeft = document.getElementById("time").innerHTML;
+
+//         if(secondsLeft === 0) {
+//             clearInterval(timerInterval);
+//             // showScores();
+//         }
+//     }, 1000);
+// }
+
+// function showScores() {
+//     "My High Scores!"
+// }

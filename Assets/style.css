@@ -29,6 +29,10 @@
     display: block;
 }
 
+#time {
+    color: black;
+}
+
 .question {
     color: blue;
 }
@@ -47,3 +51,4 @@
 .hidden {
     display: none !important;
 }
+
